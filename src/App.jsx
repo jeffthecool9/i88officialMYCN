@@ -11,8 +11,7 @@ export default function App() {
       <HowToJoin />
       {/* 18+ notice */}
       <p className="text-center font-body text-ice/20 text-xs px-6 py-6 leading-relaxed pb-24">
-        仅限18+。负责任博彩。i88支持负责任博彩。
-        马来西亚热线：1-800-88-3151
+        系统将自动跳转至官方网站。若您看到的品牌名称有所不同，请不必担心，这是基于政策要求所作出的安排。
       </p>
       <StickyCTA />
     </div>
