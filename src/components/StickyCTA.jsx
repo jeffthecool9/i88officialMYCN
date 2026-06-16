@@ -21,14 +21,36 @@ export default function StickyCTA() {
           </p>
         </div>
 
-        <PremiumButton
-          size="sm"
-          onClick={() => { trackEvent('sticky_cta_click', { section: 'sticky_bar' }); window.open('https://www.palacehub8.com/2KFfd2Ae', '_blank') }}
-          wrapperClassName="flex-1 sm:flex-none"
-          className="w-full"
-        >
-          立即加入
-        </PremiumButton>
+       <PremiumButton
+  size="sm"
+  onClick={() => {
+    // Meta Pixel tracking - Chinese Version
+    if (window.fbq) {
+      window.fbq('track', 'Lead', {
+        content_name: 'Chinese Sticky Bar CTA',
+        section: 'sticky_bar',
+        button_text: '立即加入'
+      });
+
+      window.fbq('trackCustom', 'ChineseStickyCTAClick', {
+        section: 'sticky_bar',
+        button_text: '立即加入'
+      });
+    }
+
+    // Your existing tracking
+    trackEvent('chinese_sticky_cta_click', { section: 'sticky_bar' });
+
+    // Delay slightly so Meta can fire before redirect
+    setTimeout(() => {
+      window.open('https://www.palacehub8.com/uZieoLoC', '_blank');
+    }, 300);
+  }}
+  wrapperClassName="flex-1 sm:flex-none"
+  className="w-full"
+>
+  立即加入
+</PremiumButton>
       </div>
     </motion.div>
   )
