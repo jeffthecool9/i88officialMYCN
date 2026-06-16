@@ -64,15 +64,37 @@ export default function Hero() {
             35,306名玩家已加入 — 立即参加金靴决战。
           </motion.p>
 
-          <motion.div variants={rise} className="flex md:justify-start justify-center mb-4">
-            <PremiumButton
-              size="lg"
-              onClick={() => { trackEvent('hero_cta_click', { section: 'hero' }); window.open('https://www.palacehub8.com/2KFfd2Ae', '_blank') }}
-              className="w-full sm:w-auto"
-            >
-              立即加入
-            </PremiumButton>
-          </motion.div>
+         <motion.div variants={rise} className="flex md:justify-start justify-center mb-4">
+  <PremiumButton
+    size="lg"
+    onClick={() => {
+      // Meta Pixel tracking - Chinese Version
+      if (window.fbq) {
+        window.fbq('track', 'Lead', {
+          content_name: 'Chinese Hero CTA',
+          section: 'hero',
+          button_text: '立即加入'
+        });
+
+        window.fbq('trackCustom', 'ChineseHeroCTAClick', {
+          section: 'hero',
+          button_text: '立即加入'
+        });
+      }
+
+      // Your existing tracking
+      trackEvent('chinese_hero_cta_click', { section: 'hero' });
+
+      // Delay slightly so Meta can fire before redirect
+      setTimeout(() => {
+        window.open('https://www.palacehub8.com/uZieoLoC', '_blank');
+      }, 300);
+    }}
+    className="w-full sm:w-auto"
+  >
+    立即加入
+  </PremiumButton>
+</motion.div>
 
           <motion.div
             variants={rise}
